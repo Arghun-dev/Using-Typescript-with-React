@@ -22,3 +22,7 @@ function makeTea(temp: 'hot' | 'cold'): string {
     "include": ["**/*.ts"]
 }
 ```
+
+**We don't always need to install typescript globally, we can install and use typescript locally as well.**
+
+`$. npm i typescript`
