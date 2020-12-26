@@ -26,3 +26,16 @@ function makeTea(temp: 'hot' | 'cold'): string {
 **We don't always need to install typescript globally, we can install and use typescript locally as well.**
 
 `$. npm i typescript`
+
+
+### Setting up a simple typescript project
+
+go to a folder and then write
+
+`$. npm init`
+
+press enter all the question to set default answers
+
+then we shuld install typescript as a dev dependency, because in production we won't use it, in production we'll use compiled Javascript
+
+`$. npm i -D typescript`
