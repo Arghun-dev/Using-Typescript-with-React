@@ -172,4 +172,7 @@ interface IState {
   active: number;
   photos: string[];
 }
+
+const MyCom:React.FC<IProps, IState> = () => {
+}
 ```
