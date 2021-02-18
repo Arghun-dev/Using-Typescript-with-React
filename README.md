@@ -147,3 +147,12 @@ ANY = true;
 
 // Type Assertions
 ```
+
+### How to implementing tslint (Migrating to tslint)
+
+in here I'm going to remove `eslint` totally from app and then re-implement it with `tslint`
+
+this will take out all of the eslint stuff
+`$. npm uninstall eslint babel-eslint eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks`
+
+this wiil add tslint stuff
