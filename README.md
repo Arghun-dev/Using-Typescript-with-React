@@ -157,3 +157,19 @@ this will take out all of the eslint stuff
 
 this wiil add tslint stuff
 `$. npm install -D tslint tslint-react tslint-config-prettier` 
+
+
+### Props and State interfaces
+
+this is just because to tell our component which type of `props` and `state` our compoent expecting.
+
+```js
+interface IProps {
+  media: Photo[];
+}
+
+interface IState {
+  active: number;
+  photos: string[];
+}
+```
