@@ -156,3 +156,4 @@ this will take out all of the eslint stuff
 `$. npm uninstall eslint babel-eslint eslint-config-prettier eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks`
 
 this wiil add tslint stuff
+`$. npm install -D tslint tslint-react tslint-config-prettier` 
