@@ -178,3 +178,75 @@ const MyCom:React.FC<IProps, IState> = () => {
 ```
 
 ### Function Components
+
+in here I'm going to give you an example which implement two components called `Task` and `Tasks` and their types and interfaces in a separate component called `types.ts`
+
+type.ts
+
+```js
+export interface ITask {
+  title: string;
+  completed: boolean;
+}
+
+export interface ITasks {
+  tasks: ITask[];
+}
+```
+
+App.tsx
+
+```js
+import React from 'react'
+import Tasks from './components/Tasks'
+
+const tasks = [
+  {
+    title: 'task1',
+    completed: false;
+  },
+  {
+    title: 'task2',
+    completed: false;
+  },
+  {
+    title: 'task3',
+    completed: false;
+  }
+]
+
+const App:React.FC = () => {
+  return <Tasks tasks={tasks} />
+} 
+```
+
+Tasks.tsx
+
+```js
+import React from 'react';
+import { ITasks } from '../types'
+import Task from './Task'
+
+const Tasks:React.FC<ITasks> = ({ tasks }) => {
+   return (
+      {tasks.map((task) => <Task title={task.title} completed={task.completed} />)}
+   )
+}
+
+export default Task;
+```
+
+Task.tsx
+
+```js
+import React from 'react'
+import { ITask } from '../types'
+
+const Task<ITask> = ({ title, completed }) => {
+  return (
+    <div style={{ textDecoration: completed ? 'line-through' : 'none' }}>{title}</div>
+  )
+}
+```
+
+**Note: ** notice that I decalared the interfaces in a separate file called `types.ts` and then I used it in their own components, which I imported and used each component interface in it's own component. 
