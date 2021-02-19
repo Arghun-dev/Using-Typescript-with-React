@@ -250,3 +250,12 @@ const Task<ITask> = ({ title, completed }) => {
 ```
 
 **Note:** notice that I decalared the interfaces in a separate file called `types.ts` and then I used it in their own components, which I imported and used each component interface in it's own component. 
+
+
+### Higher Order Components (React & Redux)
+
+first we need to install `redux` and `react-redux` and because these packages don't provide `type` we need to install `types` for this packages.
+
+`$. npm i -S redux react-redux`
+
+`$. npm i -D @types/redux @types/react-redux`
