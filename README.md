@@ -149,6 +149,7 @@ ANY = true;
 // Type Assertions
 ```
 
+
 ### How to implementing tslint (Migrating to tslint)
 
 in here I'm going to remove `eslint` totally from app and then re-implement it with `tslint`
