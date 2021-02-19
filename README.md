@@ -324,3 +324,167 @@ const Button: React.FC<Props> = ({ children, color = 'tomato', onClick }) => {
    return <button style={{ backgroundColor: color }} onClick={onClick}>{children}</button>
 }
 ```
+
+In this <Button /> component, we use a type for our props. Each prop has a short description listed above it to provide more context to other developers. The `?` after the prop named color indicates that it’s `optional`. The `children` prop takes a `React.ReactNode` because it accepts everything that’s a valid return value of a component (read more here). To account for our optional color prop, we use a default value when destructuring it. This example should cover the basics and show you have to write types for your props and use both optional and default values.
+
+In general, keep these things in mind when writing your props in a React and TypeScript project:
+
+```js
+type User = {
+  email: string;
+  id: string;
+}
+
+// the generic is the < >
+// the union is the User | null
+// together, TypeScript knows, "Ah, user can be User or null".
+const [user, setUser] = useState<User | null>(null);
+```
+
+### useReducer
+
+The other place where TypeScript shines with Hooks is with userReducer, where you can take advantage of discriminated unions. Here’s a useful example:
+
+```js
+type AppState = {};
+type Action =
+  | { type: "SET_ONE"; payload: string }
+  | { type: "SET_TWO"; payload: number };
+
+export function reducer(state: AppState, action: Action): AppState {
+  switch (action.type) {
+    case "SET_ONE":
+      return {
+        ...state,
+        one: action.payload // `payload` is string
+      };
+    case "SET_TWO":
+      return {
+        ...state,
+        two: action.payload // `payload` is number
+      };
+    default:
+      return state;
+  }
+}
+```
+
+The beauty here lies in the usefulness of discriminated unions. Notice how Action has a union of two similar-looking objects. The property type is a string literal. The difference between this and a type string is that the value must match the literal string defined in the type. This means your program is extra safe because a developer can only call an action that has a type key set to "SET_ONE" or "SET_TWO".
+
+As you can see, Hooks don’t add much complexity to the nature of a React and TypeScript project. If anything, they lend themselves well to the duo.
+
+
+### Handling Form Events
+
+**onChange**
+
+```js
+import React from 'react'
+
+const MyInput = () => {
+  const [value, setValue] = React.useState('')
+
+  // The event type is a "ChangeEvent"
+  // We pass in "HTMLInputElement" to the input
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setValue(e.target.value)
+  }
+
+  return <input value={value} onChange={onChange} id="input-example"/>
+}
+```
+
+### Extending Component Props
+
+Sometimes you want to take component props declared for one component and extend them to use them on another component. But you might want to modify one or two. Well, remember how we looked at the two ways to type component props, types or interfaces? Depending on which you used determines how you extend the component props. Let’s first look at the way using type:
+
+```js
+import React from 'react';
+
+type ButtonProps = {
+    /** the background color of the button */
+    color: string;
+    /** the text to show inside the button */
+    text: string;
+}
+
+type ContainerProps = ButtonProps & {
+    /** the height of the container (value used with 'px') */
+    height: number;
+}
+
+const Container: React.FC<ContainerProps> = ({ color, height, width, text }) => {
+  return <div style={{ backgroundColor: color, height: `${height}px` }}>{text}</div>
+}
+```
+
+If you declared your props using an interface, then we can use the keyword extends to essentially “extend” that interface but make a modification or two:
+
+```js
+import React from 'react';
+
+interface ButtonProps {
+    /** the background color of the button */
+    color: string;
+    /** the text to show inside the button */
+    text: string;
+}
+
+interface ContainerProps extends ButtonProps {
+    /** the height of the container (value used with 'px') */
+    height: number;
+}
+
+const Container: React.FC<ContainerProps> = ({ color, height, width, text }) => {
+  return <div style={{ backgroundColor: color, height: `${height}px` }}>{text}</div>
+}
+```
+
+### Third-party Libraries
+
+Whether it’s for a GraphQL client like Apollo or for testing with something like React Testing Library, we often find ourselves using third-party libraries in React and TypeScript projects. When this happens, the first thing you want to do is see if there’s a @types package with the TypeScript type definitions. You can do so by running:
+
+```js
+#yarn
+yarn add @types/<package-name>
+
+#npm
+npm install @types/<package-name>
+```
+
+For instance, if you’re using Jest, you can do this by running:
+
+```js
+#yarn
+yarn add @types/jest
+
+#npm
+npm install @types/jest
+```
+
+This would then give you added type-safety whenever you’re using Jest in your project.
+
+**What happens if they don’t have a @types package?**
+
+If you don’t find a `@types` package on npm, then you essentially have two options:
+
+1. Add a basic declaration file
+2. Add a thorough declaration file
+
+The first option means you create a file based on the package name and put it at the root. If, for instance, we needed types for our package banana-js, then we could create a basic declaration file called `banana-js.d.ts` at the root:
+
+```js
+declare module 'banana-js';
+```
+
+This won’t provide you type safety but it will unblock you.
+
+ more thorough declaration file would be where you add types for the library/package:
+ 
+ ```js
+ declare namespace bananaJs {
+    function getBanana(): string;
+    function addBanana(n: number) void;
+    function removeBanana(n: number) void;
+}
+ ```
