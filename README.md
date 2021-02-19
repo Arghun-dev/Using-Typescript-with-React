@@ -176,3 +176,5 @@ interface IState {
 const MyCom:React.FC<IProps, IState> = () => {
 }
 ```
+
+### Function Components
