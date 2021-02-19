@@ -301,3 +301,26 @@ function Heading({ name, color }: Props): React.ReactNode {
 const OtherHeading: React.FC<OtherProps> = ({ name, color }) =>
   <h1>My Website Heading</h1>
 ```
+
+
+When it comes to types or interfaces, we suggest following the guidelines presented by the `react-typescript-cheatsheet` community:
+
+“always use interface for public API’s definition when authoring a library or 3rd-party ambient type definitions.”
+“consider using type for your React Component Props and State, because it is more constrained.”
+
+```js
+import React from 'react'
+
+type Props = {
+  /** color to use for the background */
+  color?: string;
+  /** standard children prop: accepts any valid React Node */
+  children: React.ReactNode;
+  /** callback function passed to the onClick handler*/
+  onClick: ()  => void;
+}
+
+const Button: React.FC<Props> = ({ children, color = 'tomato', onClick }) => {
+   return <button style={{ backgroundColor: color }} onClick={onClick}>{children}</button>
+}
+```
