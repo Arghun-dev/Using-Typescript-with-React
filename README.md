@@ -275,3 +275,29 @@ function Heading(): React.ReactNode {
 // Written as a function expression
 const OtherHeading: React.FC = () => <h1>My Website Heading</h1>
 ```
+
+
+**Tip**
+
+```js
+import React from 'react'
+
+interface Props {
+  name: string;
+  color: string;
+}
+
+type OtherProps = {
+  name: string;
+  color: string;
+}
+
+// Notice here we're using the function declaration with the interface Props
+function Heading({ name, color }: Props): React.ReactNode {
+  return <h1>My Website Heading</h1>
+}
+
+// Notice here we're using the function expression with the type OtherProps
+const OtherHeading: React.FC<OtherProps> = ({ name, color }) =>
+  <h1>My Website Heading</h1>
+```
