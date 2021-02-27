@@ -489,3 +489,49 @@ This won’t provide you type safety but it will unblock you.
     function removeBanana(n: number) void;
 }
  ```
+
+
+# React with Typescript
+
+### Function Components
+
+```js
+interface Task {
+  title: string;
+}
+
+interface TasksListProps {
+  tasks: Task[];
+}
+
+const TasksList:React.FC<TasksListProps> = ({ tasks }) => {
+  return (
+    <ul>
+      {tasks.map(item => <li>{task.title}</li>)}
+    </ul>
+  )
+}
+```
+
+### Class Components
+
+```js
+interface TasksListProps {
+  tasks: Task[]
+}
+
+interface TasksListState {
+  tasks: Task[]
+}
+
+class TasksList extends React.Component<TasksListProps, TasksListState> {
+  render() {
+    const { tasks } = this.state;
+    return (
+      <ul>
+        {tasks.map(task => <li>{task.title}</li>)}
+      </ul>
+    )
+  }
+}
+```
