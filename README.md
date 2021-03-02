@@ -569,6 +569,14 @@ ok the server has started. now we can query the `events` endpoint to read and ch
 
 I will use the `curl` tool to query the server. let;s send a get request to our endpoint
 
+**GET Request**
+
 `$. curl http://localhost:3001/events`
 
 then we get the data.
+
+**POST Request**
+
+`$. curl -X POST -H "Content-Type: application/json" -d '{"title": "Learning TypeScript", "dataStart": "2020-01-29T19:00:28.652Z", "dataEnd": "2020-01-29T19:00:28.652Z"}' http://localhost:3001/events`
+
+
