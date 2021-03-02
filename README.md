@@ -580,3 +580,27 @@ then we get the data.
 `$. curl -X POST -H "Content-Type: application/json" -d '{"title": "Learning TypeScript", "dataStart": "2020-01-29T19:00:28.652Z", "dataEnd": "2020-01-29T19:00:28.652Z"}' http://localhost:3001/events`
 
 
+it sounds really disturbing running 2 servers running in 2 consoles, since I'm lazy I would like to run one command to run 2 processes both at the same time. and luckily we can do this with the command called `concurrently`
+
+to use `concurrently` we need to install concurrently first.
+
+`$. npm i -D concurrently`
+
+then we can use it just like below:
+
+`$.  npx concurrently -k "json-server --watch json-server/db.json --port 3001" "npm start"`
+
+to be able to run this. you need to add to lines to your `scripts` inside `package.json`
+
+```js
+"scripts": {
+  "json-server": "json-server --watch json-server/db.json --port 3001",
+  "dev": "concurrently -k \"npm run json-server\" \"npm start\""
+}
+```
+
+then you can run
+
+`$. npm run dev`
+
+that's it, we have successfully setup a fake api to our development.
