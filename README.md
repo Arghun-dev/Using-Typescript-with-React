@@ -535,3 +535,40 @@ class TasksList extends React.Component<TasksListProps, TasksListState> {
   }
 }
 ```
+
+### Setting up fake server
+
+first install json-server
+
+`$. npm i -D json-server`
+
+`json-server` reads the data from a json file.
+
+so create a filer called `json-server` in the next to the `src` folder. and inside it create a file called `db.json`, basically it's an object which each key, represents an endpoint. let's create and endpoint called `events`
+
+db.json
+
+```js
+{
+  "events": [
+    {
+      "id": 1,
+      "title": "Jogging",
+      "dataStart": "2020-01-29T17:41:28.652z",
+      "dataEnd": "2020-01-29T18:41:28.652z"
+    }
+  ]
+}
+```
+
+so we've got one end point called `event` in our data base, now let's run fake server, to serve this data:
+
+`$. npx json-server --watch json-server/db.json --port 3001`
+
+ok the server has started. now we can query the `events` endpoint to read and change the related data.
+
+I will use the `curl` tool to query the server. let;s send a get request to our endpoint
+
+`$. curl http://localhost:3001/events`
+
+then we get the data.
