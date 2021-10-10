@@ -1,7 +1,7 @@
 # Using-Typescript-with-React
 
 
-## Deal with State in React application
+## State in React application
 
 ```js
 
