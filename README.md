@@ -20,6 +20,26 @@ const App = () => {
 ```
 
 
+## Props in React Application
+
+```js
+interface IProps {
+  people: {
+    name: string;
+    url: string;
+    age: number;
+    note?: string;
+  }
+}
+
+const List = ({ people }: IProps) => {
+  return (
+    <div>...</div>
+  )
+}
+```
+
+
 ```js
 function makeTea(temp: 'hot' | 'cold'): string {
   return `Here is tea with temperature of ${temp}`
