@@ -30,7 +30,7 @@ interface IProps {
   setPeople: React.Dispatch<React.SetStateAction<Props["people"]>>
 }
 
-const List = ({ people, setPeople }: IProps) => {
+const List: React.FC<IProps> = ({ people, setPeople }) => {
   return (
     <div>...</div>
   )
