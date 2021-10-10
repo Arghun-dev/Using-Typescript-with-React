@@ -1,5 +1,25 @@
 # Using-Typescript-with-React
 
+
+## Deal with State in React application
+
+```js
+
+interface IState {
+  people: {
+    name: string;
+    url: string;
+    age: number;
+    note?: string;
+  }
+}
+
+const App = () => {
+  const [people, setPeople] = useState<IState["people"]>([]);
+}
+```
+
+
 ```js
 function makeTea(temp: 'hot' | 'cold'): string {
   return `Here is tea with temperature of ${temp}`
