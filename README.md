@@ -23,9 +23,19 @@ const App = () => {
 ## Props in React Application
 
 ```js
-import { IState as IProps } from './App';
+import { IState as Props } from './App';
 
-const List = ({ people }: IProps) => {
+interface IProps {
+  people: Props["people"]
+  setPeople: React.Dispatch<React.SetStateAction<{
+   name: string;
+   age: number;
+   url: string;
+   note?: string;
+  }[]>>
+}
+
+const List = ({ people, setPeople }: IProps) => {
   return (
     <div>...</div>
   )
