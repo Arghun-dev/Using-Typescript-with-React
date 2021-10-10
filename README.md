@@ -82,6 +82,53 @@ const renderList = (): JSX.Element[] => {
 }
 ```
 
+## Handling Events
+
+AddToList.tsx
+```js
+import React from 'react';
+
+const AddToList = () => {
+  const [input, setInput] = useState({ name: "", age: "", note: "", img: "" });
+  
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => setInput({ ...input, [e.target.name]: e.target.value });
+  
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="name"
+        value={input.name}
+        name="name"
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        placeholder="age"
+        value={input.age}
+        name="age"
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        placeholder="image url"
+        value={input.img}
+        name="img"
+        onChange={handleChange}
+      />
+      <textarea
+        placeholder="note"
+        value={input.note}
+        name="note"
+        onChange={handleChange}
+      />
+    </div>
+  )
+}
+
+export default AddToList;
+```
+
 ### Insalling Typescript globally and locally on your machine
 
 `$. npm install -g typescript`
