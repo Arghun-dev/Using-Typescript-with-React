@@ -40,6 +40,28 @@ const List = ({ people }: IProps) => {
 ```
 
 
+OR
+
+this is more specific, this says hey this is functional component and it consists of these props
+
+```js
+interface IProps {
+  people: {
+    name: string;
+    url: string;
+    age: number;
+    note?: string;
+  }
+}
+
+const List: React.FC<IProps> = ({ people }) => {
+  return (
+    <div>...</div>
+  )
+}
+```
+
+
 ```js
 function makeTea(temp: 'hot' | 'cold'): string {
   return `Here is tea with temperature of ${temp}`
