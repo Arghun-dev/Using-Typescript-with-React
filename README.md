@@ -68,6 +68,20 @@ function makeTea(temp: 'hot' | 'cold'): string {
 }
 ```
 
+## Handling Functions
+
+```js
+const renderList = (): JSX.Element[] => {
+  return people.map((person) => {
+    return (
+      <li className="list">
+        ...
+      </li>
+    )
+  })
+}
+```
+
 ### Insalling Typescript globally and locally on your machine
 
 `$. npm install -g typescript`
