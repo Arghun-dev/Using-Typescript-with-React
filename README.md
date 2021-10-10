@@ -5,7 +5,7 @@
 
 ```js
 
-interface IState {
+export interface IState {
   people: {
     name: string;
     url: string;
@@ -23,14 +23,7 @@ const App = () => {
 ## Props in React Application
 
 ```js
-interface IProps {
-  people: {
-    name: string;
-    url: string;
-    age: number;
-    note?: string;
-  }
-}
+import { IState as IProps } from './App';
 
 const List = ({ people }: IProps) => {
   return (
